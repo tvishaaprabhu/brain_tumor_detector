@@ -7,3 +7,4 @@ opencv-python-headless
 pydicom
 scikit-learn
 matplotlib
+nibabel
