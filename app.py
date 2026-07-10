@@ -14,238 +14,328 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&family=Space+Mono&display=swap');
 
 html, body, [class*="css"] {
-    font-family: 'Inter', sans-serif;
-    background-color: #0A0E1A;
-    color: #E8EAF0;
+    font-family: 'DM Sans', sans-serif;
+    background-color: #0C0F1A;
+    color: #C9CDD9;
 }
-#MainMenu, footer, header { visibility: hidden; }
-.block-container { padding: 2rem 3rem 4rem 3rem; max-width: 1100px; }
 
-.hero {
+#MainMenu, footer, header { visibility: hidden; }
+.block-container { padding: 0 3rem 4rem 3rem; max-width: 1080px; }
+
+/* ── Header ───────────────────────────────────────────── */
+.ns-header {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
-    padding: 1.8rem 0 1.8rem 0;
-    border-bottom: 1px solid #1E2433;
-    margin-bottom: 2.5rem;
+    padding: 2.8rem 0 2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 3rem;
 }
-.hero-left { display: flex; align-items: center; gap: 0.8rem; }
-.hero-icon { font-size: 1.6rem; }
-.hero-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #FFFFFF;
-    letter-spacing: -0.02em;
-    margin: 0;
+.ns-wordmark {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: #F0F2F8;
+    letter-spacing: -0.01em;
+    line-height: 1;
 }
-.hero-title span { color: #4ECDC4; }
-.hero-right {
-    font-size: 0.78rem;
-    color: #4B5563;
-    letter-spacing: 0.06em;
+.ns-wordmark em {
+    font-style: normal;
+    color: #7C9EFF;
+}
+.ns-tagline {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: #3D4460;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
+    line-height: 1.6;
     text-align: right;
 }
 
-.step-eyebrow {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
+/* ── Step headers ─────────────────────────────────────── */
+.ns-step-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: #7C9EFF;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #4ECDC4;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.25rem;
 }
-.step-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #FFFFFF;
-    margin-bottom: 1rem;
-}
-
-.card {
-    background: #111827;
-    border: 1px solid #1E2433;
-    border-radius: 10px;
-    padding: 1.2rem 1.4rem;
-    margin-bottom: 1rem;
+.ns-step-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.45rem;
+    color: #F0F2F8;
+    margin-bottom: 1.1rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
 }
 
-.result-card-tumor {
-    background: linear-gradient(135deg, #111827, #0D1520);
-    border: 1px solid #D97706;
-    border-radius: 14px;
-    padding: 2rem;
-    text-align: center;
-    margin: 1rem 0;
+/* ── Upload area ──────────────────────────────────────── */
+.ns-upload-hint {
+    font-size: 0.75rem;
+    color: #3D4460;
+    margin-top: 0.4rem;
+    letter-spacing: 0.03em;
 }
-.result-card-clear {
-    background: linear-gradient(135deg, #111827, #0D1520);
-    border: 1px solid #4ECDC4;
+
+/* ── Info card ────────────────────────────────────────── */
+.ns-info-card {
+    background: linear-gradient(160deg, #131829 0%, #0E1220 100%);
+    border: 1px solid rgba(124,158,255,0.12);
     border-radius: 14px;
-    padding: 2rem;
-    text-align: center;
-    margin: 1rem 0;
+    padding: 1.4rem 1.6rem;
 }
-.result-eyebrow {
-    font-size: 0.7rem;
-    color: #6B7280;
+.ns-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.ns-info-row:last-child { border-bottom: none; }
+.ns-info-key {
+    font-size: 0.72rem;
+    color: #3D4460;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin-bottom: 0.6rem;
+    font-family: 'Space Mono', monospace;
 }
-.result-class-tumor {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2.4rem;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin-bottom: 0.3rem;
-    line-height: 1.1;
+.ns-info-val {
+    font-size: 0.82rem;
+    color: #C9CDD9;
+    text-align: right;
+    max-width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-.result-class-clear {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2.4rem;
-    font-weight: 700;
-    color: #4ECDC4;
-    margin-bottom: 0.3rem;
-    line-height: 1.1;
-}
-.result-conf-tumor { font-size: 1rem; color: #D97706; font-weight: 500; }
-.result-conf-clear { font-size: 1rem; color: #4ECDC4; font-weight: 500; }
 
-.auto-badge {
-    display: inline-block;
-    background: #0D2B2A;
-    border: 1px solid #4ECDC4;
-    border-radius: 6px;
-    padding: 0.3rem 0.8rem;
+/* ── Preprocessing badge ──────────────────────────────── */
+.ns-auto-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(124,158,255,0.08);
+    border: 1px solid rgba(124,158,255,0.2);
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    color: #7C9EFF;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+.ns-applied {
+    font-size: 0.76rem;
+    color: #3D4460;
+    margin-top: 0.2rem;
+    font-style: italic;
+}
+
+/* ── Result cards ─────────────────────────────────────── */
+.ns-result-tumor {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #131829 0%, #160E28 100%);
+    border: 1px solid rgba(180,120,255,0.3);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    margin: 1.2rem 0;
+}
+.ns-result-tumor::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(140,80,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+.ns-result-clear {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0D1A1A 0%, #0A1520 100%);
+    border: 1px solid rgba(100,220,180,0.25);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    margin: 1.2rem 0;
+}
+.ns-result-clear::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(100,220,180,0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+.ns-result-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+}
+.ns-result-eyebrow-tumor { color: #9B6BFF; }
+.ns-result-eyebrow-clear { color: #64DCB4; }
+.ns-result-name-tumor {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem;
+    color: #F0F2F8;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.02em;
+}
+.ns-result-name-clear {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem;
+    color: #64DCB4;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.02em;
+}
+.ns-conf-tumor {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: #9B6BFF;
+    letter-spacing: 0.06em;
+}
+.ns-conf-clear {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: #64DCB4;
+    letter-spacing: 0.06em;
+}
+
+/* ── Gradcam caption ──────────────────────────────────── */
+.ns-gradcam-note {
     font-size: 0.78rem;
-    color: #4ECDC4;
-    margin-bottom: 0.6rem;
-}
-.preprocess-note {
-    font-size: 0.8rem;
-    color: #6B7280;
-    margin-top: 0.3rem;
+    color: #3D4460;
+    margin-bottom: 1rem;
+    font-style: italic;
 }
 
-.divider { border: none; border-top: 1px solid #1E2433; margin: 2rem 0; }
+/* ── Divider ──────────────────────────────────────────── */
+.ns-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin: 2.5rem 0;
+}
 
+/* ── Empty state ──────────────────────────────────────── */
+.ns-empty {
+    text-align: center;
+    padding: 5rem 0 3rem 0;
+}
+.ns-empty-glyph {
+    font-size: 4rem;
+    opacity: 0.15;
+    margin-bottom: 1rem;
+}
+.ns-empty-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: #252A3A;
+    letter-spacing: 0.01em;
+}
+
+/* ── Streamlit overrides ──────────────────────────────── */
 .stButton > button {
-    background: #4ECDC4 !important;
-    color: #0A0E1A !important;
-    font-family: 'Space Grotesk', sans-serif !important;
-    font-weight: 600 !important;
+    background: linear-gradient(135deg, #7C9EFF 0%, #9B6BFF 100%) !important;
+    color: #0C0F1A !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-weight: 500 !important;
     border: none !important;
-    border-radius: 7px !important;
-    padding: 0.65rem 2rem !important;
-    font-size: 0.92rem !important;
-    letter-spacing: 0.02em !important;
-    width: auto !important;
+    border-radius: 8px !important;
+    padding: 0.65rem 2.2rem !important;
+    font-size: 0.88rem !important;
+    letter-spacing: 0.03em !important;
 }
-.stButton > button:hover { background: #38B2AC !important; }
-.stToggle label { color: #9CA3AF !important; font-size: 0.85rem !important; }
-.stCheckbox label { color: #9CA3AF !important; font-size: 0.84rem !important; }
-.stSlider label { color: #9CA3AF !important; font-size: 0.84rem !important; }
+.stButton > button:hover {
+    opacity: 0.88 !important;
+}
+.stToggle label { color: #6B7280 !important; font-size: 0.84rem !important; }
+.stCheckbox label { color: #6B7280 !important; font-size: 0.82rem !important; }
+.stSlider label { color: #6B7280 !important; font-size: 0.82rem !important; }
 [data-testid="stFileUploader"] section {
-    border: 2px dashed #1E2433 !important;
-    border-radius: 10px !important;
-    background: #111827 !important;
+    background: linear-gradient(160deg, #131829 0%, #0E1220 100%) !important;
+    border: 1.5px dashed rgba(124,158,255,0.2) !important;
+    border-radius: 12px !important;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Hero ──────────────────────────────────────────────────────────────────────
+# ── Header ────────────────────────────────────────────────────────────────────
 st.markdown("""
-<div class="hero">
-    <div class="hero-left">
-        <span class="hero-icon">🧠</span>
-        <p class="hero-title">Neuro<span>Scan</span> AI</p>
-    </div>
-    <div class="hero-right">Brain Tumor Detection · Powered by Deep Learning</div>
+<div class="ns-header">
+    <div class="ns-wordmark">Neuro<em>Scan</em> <span style="color:#3D4460;font-size:1rem;">AI</span></div>
+    <div class="ns-tagline">Brain Tumor Detection<br>Powered by Deep Learning</div>
 </div>
 """, unsafe_allow_html=True)
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
-def load_nifti(file_bytes):
-    """Load a NIfTI file from bytes, return pixel array."""
+def load_nifti(uploaded):
     import nibabel as nib
     import tempfile, os
-    suffix = ".nii.gz" if file_bytes.name.endswith(".gz") else ".nii"
+    suffix = ".nii.gz" if uploaded.name.endswith(".gz") else ".nii"
     with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
-        tmp.write(file_bytes.read())
+        tmp.write(uploaded.read())
         tmp_path = tmp.name
     try:
         img = nib.load(tmp_path)
         data = img.get_fdata(dtype=np.float32)
     finally:
         os.unlink(tmp_path)
-    # Drop 4th dimension if present (take first volume)
     if data.ndim == 4:
         data = data[:, :, :, 0]
-    # Reorient to standard (H, W, slices)
     data = np.rot90(data, k=1, axes=(0, 1))
     return data
 
 
-def adaptive_preprocess(img: np.ndarray) -> tuple:
-    """
-    Adaptively choose and apply the best preprocessing pipeline for each image.
-    Returns (processed_image, description_string).
-    """
+def adaptive_preprocess(img: np.ndarray):
     steps = []
-    out = img.copy().astype(np.float32)
-
-    # 1. Normalize to 0-255
-    out = cv2.normalize(out, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
+    out = cv2.normalize(img.copy(), None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
     steps.append("normalisation")
 
-    # 2. Assess brightness — if mean < 80 (dark scan), boost contrast more
-    mean_brightness = out.mean()
-    if mean_brightness < 80:
+    mean_b = out.mean()
+    if mean_b < 80:
         clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
         out = clahe.apply(out)
-        steps.append("CLAHE (high contrast boost — dark scan)")
+        steps.append("CLAHE (dark scan)")
     else:
-        # Standard brain-masked histogram equalization
         mask = out > 15
         if mask.any():
-            brain_pixels = out[mask]
-            brain_eq = cv2.equalizeHist(brain_pixels.reshape(-1, 1))
-            out[mask] = brain_eq.ravel()
-        steps.append("brain-masked histogram equalisation")
+            brain_px = out[mask]
+            out[mask] = cv2.equalizeHist(brain_px.reshape(-1, 1)).ravel()
+        steps.append("histogram eq.")
 
-    # 3. Assess noise level via Laplacian variance
     lap_var = cv2.Laplacian(out, cv2.CV_64F).var()
     if lap_var > 500:
-        # High noise — apply stronger NLM denoising
         out = cv2.fastNlMeansDenoising(out, h=15, templateWindowSize=7, searchWindowSize=21)
-        steps.append("NLM denoising (h=15 — high noise detected)")
+        steps.append("NLM denoising (noisy)")
     elif lap_var > 150:
-        # Moderate noise — light Gaussian
         out = cv2.GaussianBlur(out, (3, 3), 0)
-        steps.append("Gaussian blur 3×3 (moderate noise)")
+        steps.append("Gaussian 3×3")
     else:
-        steps.append("no denoising (clean scan)")
+        steps.append("no denoising")
 
     return out, " · ".join(steps)
 
 
 # ── Step 01: Upload ───────────────────────────────────────────────────────────
-st.markdown('<p class="step-eyebrow">Step 01</p><p class="step-title">Upload MRI Scan</p>', unsafe_allow_html=True)
+st.markdown('<p class="ns-step-num">// 01</p><p class="ns-step-title">Upload MRI Scan</p>', unsafe_allow_html=True)
 
 uploaded_file = st.file_uploader(
     "upload",
     type=["jpg", "jpeg", "png", "webp", "dcm", "nii", "nii.gz"],
     label_visibility="collapsed"
 )
-st.markdown('<p class="preprocess-note">Supports JPG · PNG · WebP · DICOM (.dcm) · NIfTI (.nii, .nii.gz)</p>', unsafe_allow_html=True)
+st.markdown('<p class="ns-upload-hint">JPG · PNG · WebP · DICOM (.dcm) · NIfTI (.nii .nii.gz)</p>', unsafe_allow_html=True)
 
 if uploaded_file is not None:
     fname = uploaded_file.name.lower()
@@ -254,7 +344,6 @@ if uploaded_file is not None:
     pixel_array = None
     img_array = None
 
-    # ── Parse file ────────────────────────────────────────────────────────────
     if is_dicom:
         dicom = pydicom.dcmread(uploaded_file)
         pixel_array = dicom.pixel_array.squeeze()
@@ -264,12 +353,11 @@ if uploaded_file is not None:
         img = Image.open(uploaded_file)
         img_array = np.array(img.convert("L")).squeeze()
 
-    # ── Slice selector for multi-slice ────────────────────────────────────────
+    # Multi-slice scroller
     if pixel_array is not None and len(pixel_array.shape) == 3:
         n_slices = pixel_array.shape[2] if is_nifti else pixel_array.shape[0]
-        st.markdown('<hr class="divider">', unsafe_allow_html=True)
-        st.markdown('<p class="step-eyebrow">Multi-Slice File Detected</p>', unsafe_allow_html=True)
-        st.caption(f"{n_slices} slices found — select the slice to analyse.")
+        st.markdown('<div class="ns-divider"></div>', unsafe_allow_html=True)
+        st.markdown(f'<p class="ns-step-num">Multi-Slice · {n_slices} slices detected</p>', unsafe_allow_html=True)
 
         if "slice_idx" not in st.session_state:
             st.session_state.slice_idx = n_slices // 2
@@ -281,7 +369,7 @@ if uploaded_file is not None:
                 st.session_state.slice_idx = max(0, st.session_state.slice_idx - 1)
         with col_slider:
             st.session_state.slice_idx = st.slider(
-                "Slice", 0, n_slices - 1,
+                "slice", 0, n_slices - 1,
                 st.session_state.slice_idx,
                 label_visibility="collapsed"
             )
@@ -290,86 +378,88 @@ if uploaded_file is not None:
             if st.button("▶"):
                 st.session_state.slice_idx = min(n_slices - 1, st.session_state.slice_idx + 1)
 
-        st.caption(f"Slice {st.session_state.slice_idx + 1} of {n_slices}")
-
-        if is_nifti:
-            img_array = pixel_array[:, :, st.session_state.slice_idx]
-        else:
-            img_array = pixel_array[st.session_state.slice_idx]
+        st.caption(f"Slice {st.session_state.slice_idx + 1} / {n_slices}")
+        img_array = pixel_array[:, :, st.session_state.slice_idx] if is_nifti else pixel_array[st.session_state.slice_idx]
 
     elif pixel_array is not None:
         img_array = pixel_array
 
     img_array = cv2.normalize(img_array, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
 
-    # ── Scan preview ──────────────────────────────────────────────────────────
-    st.markdown('<hr class="divider">', unsafe_allow_html=True)
-    col_img, col_info = st.columns([1, 1])
+    # Scan preview + info
+    st.markdown('<div class="ns-divider"></div>', unsafe_allow_html=True)
+    col_img, col_info = st.columns([3, 2])
     with col_img:
-        st.image(img_array, caption="Uploaded scan", use_container_width=True)
+        st.image(img_array, use_container_width=True)
     with col_info:
         h, w = img_array.shape[:2]
-        fmt = "DICOM" if is_dicom else "NIfTI" if is_nifti else uploaded_file.type
+        fmt = "DICOM" if is_dicom else "NIfTI" if is_nifti else "Image"
         st.markdown(f"""
-        <div class="card">
-            <p class="step-eyebrow">Scan Info</p>
-            <p style="color:#9CA3AF;font-size:0.85rem;margin:0.3rem 0;">
-                <span style="color:#E8EAF0;font-weight:500;">File</span>&nbsp;&nbsp;{uploaded_file.name}
-            </p>
-            <p style="color:#9CA3AF;font-size:0.85rem;margin:0.3rem 0;">
-                <span style="color:#E8EAF0;font-weight:500;">Dimensions</span>&nbsp;&nbsp;{w} × {h} px
-            </p>
-            <p style="color:#9CA3AF;font-size:0.85rem;margin:0.3rem 0;">
-                <span style="color:#E8EAF0;font-weight:500;">Format</span>&nbsp;&nbsp;{fmt}
-            </p>
+        <div class="ns-info-card">
+            <div class="ns-info-row">
+                <span class="ns-info-key">File</span>
+                <span class="ns-info-val">{uploaded_file.name}</span>
+            </div>
+            <div class="ns-info-row">
+                <span class="ns-info-key">Format</span>
+                <span class="ns-info-val">{fmt}</span>
+            </div>
+            <div class="ns-info-row">
+                <span class="ns-info-key">Dimensions</span>
+                <span class="ns-info-val">{w} × {h} px</span>
+            </div>
+            <div class="ns-info-row">
+                <span class="ns-info-key">Mean brightness</span>
+                <span class="ns-info-val">{img_array.mean():.1f}</span>
+            </div>
+            <div class="ns-info-row">
+                <span class="ns-info-key">Noise (Laplacian)</span>
+                <span class="ns-info-val">{cv2.Laplacian(img_array, cv2.CV_64F).var():.1f}</span>
+            </div>
         </div>
         """, unsafe_allow_html=True)
 
     # ── Step 02: Preprocessing ────────────────────────────────────────────────
-    st.markdown('<hr class="divider">', unsafe_allow_html=True)
-    st.markdown('<p class="step-eyebrow">Step 02</p><p class="step-title">Image Preprocessing</p>', unsafe_allow_html=True)
+    st.markdown('<div class="ns-divider"></div>', unsafe_allow_html=True)
+    st.markdown('<p class="ns-step-num">// 02</p><p class="ns-step-title">Preprocessing</p>', unsafe_allow_html=True)
 
     auto_mode = st.toggle("Auto preprocessing (recommended)", value=True)
 
     if auto_mode:
-        denoised, applied_steps = adaptive_preprocess(img_array)
-        st.markdown(f'<span class="auto-badge">Auto</span>', unsafe_allow_html=True)
-        st.markdown(f'<p class="preprocess-note">Applied: {applied_steps}</p>', unsafe_allow_html=True)
+        denoised, steps_applied = adaptive_preprocess(img_array)
+        st.markdown(f'<span class="ns-auto-tag">● Auto</span>', unsafe_allow_html=True)
+        st.markdown(f'<p class="ns-applied">{steps_applied}</p>', unsafe_allow_html=True)
     else:
-        st.caption("Select your own preprocessing options.")
         col_a, col_b = st.columns(2)
         with col_a:
-            do_normalize = st.checkbox("Normalize (0–255)", value=True)
-            do_clahe = st.checkbox("CLAHE contrast enhancement")
-            do_equalize = st.checkbox("Histogram equalization")
+            do_norm = st.checkbox("Normalize", value=True)
+            do_clahe = st.checkbox("CLAHE contrast")
+            do_eq = st.checkbox("Histogram equalization")
         with col_b:
-            do_gaussian = st.checkbox("Gaussian blur")
-            do_median = st.checkbox("Median filter")
-            do_nlm = st.checkbox("Non-local means denoising")
+            do_gauss = st.checkbox("Gaussian blur")
+            do_med = st.checkbox("Median filter")
+            do_nlm = st.checkbox("Non-local means")
 
-        processed = img_array.copy()
-        if do_normalize:
-            processed = cv2.normalize(processed, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
+        proc = img_array.copy()
+        if do_norm:
+            proc = cv2.normalize(proc, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
         if do_clahe:
-            clahe = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8))
-            processed = clahe.apply(processed)
-        if do_equalize:
-            mask = processed > 15
+            proc = cv2.createCLAHE(clipLimit=2.5, tileGridSize=(8, 8)).apply(proc)
+        if do_eq:
+            mask = proc > 15
             if mask.any():
-                brain_pixels = processed[mask]
-                brain_eq = cv2.equalizeHist(brain_pixels.reshape(-1, 1))
-                processed[mask] = brain_eq.ravel()
+                proc[mask] = cv2.equalizeHist(proc[mask].reshape(-1, 1)).ravel()
 
-        denoised = processed.copy()
-        if do_gaussian:
-            gk = st.slider("Gaussian kernel", 1, 15, 3, step=2)
+        denoised = proc.copy()
+        if do_gauss:
+            gk = st.slider("Kernel size", 1, 15, 3, step=2)
             denoised = cv2.GaussianBlur(denoised, (gk, gk), 0)
-        if do_median:
+        if do_med:
             mk = st.slider("Median kernel", 1, 15, 3, step=2)
             denoised = cv2.medianBlur(denoised, mk)
         if do_nlm:
-            h_val = st.slider("NLM strength", 1, 30, 10)
-            denoised = cv2.fastNlMeansDenoising(denoised, h=h_val)
+            h_s = st.slider("NLM strength", 1, 30, 10)
+            denoised = cv2.fastNlMeansDenoising(denoised, h=h_s)
 
     col1, col2 = st.columns(2)
     with col1:
@@ -378,8 +468,8 @@ if uploaded_file is not None:
         st.image(denoised, caption="Processed", use_container_width=True)
 
     # ── Step 03: Diagnosis ────────────────────────────────────────────────────
-    st.markdown('<hr class="divider">', unsafe_allow_html=True)
-    st.markdown('<p class="step-eyebrow">Step 03</p><p class="step-title">Run Diagnosis</p>', unsafe_allow_html=True)
+    st.markdown('<div class="ns-divider"></div>', unsafe_allow_html=True)
+    st.markdown('<p class="ns-step-num">// 03</p><p class="ns-step-title">Diagnosis</p>', unsafe_allow_html=True)
 
     run_btn = st.button("Run Diagnosis →")
 
@@ -391,34 +481,34 @@ if uploaded_file is not None:
             input_tensor = preprocess(denoised)
             gray_128 = cv2.resize(denoised, (128, 128)).astype(np.float32) / 255.0
 
-            with st.spinner("Analysing scan..."):
+            with st.spinner("Analysing..."):
                 class_name, confidence, all_probs = predict(model, input_tensor)
 
             detected_class = class_name.lower().replace(" ", "")
 
             if detected_class == "notumor":
                 st.markdown(f"""
-                <div class="result-card-clear">
-                    <p class="result-eyebrow">Diagnosis Result</p>
-                    <p class="result-class-clear">No Tumor Detected</p>
-                    <p class="result-conf-clear">{confidence*100:.1f}% confidence</p>
+                <div class="ns-result-clear">
+                    <p class="ns-result-eyebrow ns-result-eyebrow-clear">// Diagnosis</p>
+                    <p class="ns-result-name-clear">No Tumor Detected</p>
+                    <p class="ns-conf-clear">{confidence*100:.1f}% confidence</p>
                 </div>
                 """, unsafe_allow_html=True)
             else:
                 st.markdown(f"""
-                <div class="result-card-tumor">
-                    <p class="result-eyebrow">Tumor Detected</p>
-                    <p class="result-class-tumor">{class_name}</p>
-                    <p class="result-conf-tumor">{confidence*100:.1f}% confidence</p>
+                <div class="ns-result-tumor">
+                    <p class="ns-result-eyebrow ns-result-eyebrow-tumor">// Tumor Detected</p>
+                    <p class="ns-result-name-tumor">{class_name}</p>
+                    <p class="ns-conf-tumor">{confidence*100:.1f}% confidence</p>
                 </div>
                 """, unsafe_allow_html=True)
 
             # ── Step 04: Grad-CAM ─────────────────────────────────────────────
-            st.markdown('<hr class="divider">', unsafe_allow_html=True)
-            st.markdown('<p class="step-eyebrow">Step 04</p><p class="step-title">Grad-CAM Explanation</p>', unsafe_allow_html=True)
-            st.caption("Regions highlighted in red most influenced the model's prediction.")
+            st.markdown('<div class="ns-divider"></div>', unsafe_allow_html=True)
+            st.markdown('<p class="ns-step-num">// 04</p><p class="ns-step-title">Grad-CAM Explanation</p>', unsafe_allow_html=True)
+            st.markdown('<p class="ns-gradcam-note">Regions highlighted in red most influenced the model\'s prediction.</p>', unsafe_allow_html=True)
 
-            with st.spinner("Generating Grad-CAM..."):
+            with st.spinner("Generating heatmap..."):
                 class_idx = int(np.argmax(all_probs))
                 heatmap = get_gradcam(model, input_tensor, class_idx)
                 overlaid = overlay_gradcam(gray_128, heatmap)
@@ -431,11 +521,11 @@ if uploaded_file is not None:
             with col3:
                 st.image(overlaid, caption="Overlay", use_container_width=True)
 
-            st.markdown('<hr class="divider">', unsafe_allow_html=True)
+            st.markdown('<div class="ns-divider"></div>', unsafe_allow_html=True)
             buf = io.BytesIO()
             Image.fromarray(overlaid).save(buf, format="PNG")
             st.download_button(
-                label="Download Grad-CAM Report",
+                "Download Grad-CAM Report",
                 data=buf.getvalue(),
                 file_name=f"gradcam_{uploaded_file.name.rsplit('.', 1)[0]}.png",
                 mime="image/png"
@@ -446,11 +536,9 @@ if uploaded_file is not None:
             st.info("Make sure `brain_tumor_detector.keras` and `predict.py` are in the repo root.")
 
 else:
-    st.markdown('<hr class="divider">', unsafe_allow_html=True)
     st.markdown("""
-    <div style="text-align:center;padding:4rem 0;color:#1F2937;">
-        <p style="font-size:3.5rem;margin:0;filter:grayscale(0.3);">🧠</p>
-        <p style="font-family:'Space Grotesk',sans-serif;font-size:1rem;
-            color:#374151;margin-top:0.8rem;">Upload a scan above to begin</p>
+    <div class="ns-empty">
+        <div class="ns-empty-glyph">⬡</div>
+        <p class="ns-empty-text">Upload a scan above to begin</p>
     </div>
     """, unsafe_allow_html=True)
