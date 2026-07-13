@@ -1,10 +1,11 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+
 streamlit
-tensorflow-cpu
+torch
+torchvision
 numpy
-pandas
 Pillow
 opencv-python-headless
 pydicom
-scikit-learn
-matplotlib
 nibabel
+git+https://github.com/facebookresearch/segment-anything.git
