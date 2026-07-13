@@ -140,8 +140,8 @@ div[data-testid="stRadio"] > div > label:has(input:checked) {
     background:#1e2542 !important; color:#f0f2f8 !important; }
 div[data-testid="stRadio"] > div > label > div:first-child { display:none !important; }
 div[data-testid="stTextInput"]:has(input[placeholder="__bbox__"]) {
-    position:absolute !important; opacity:0 !important; height:0 !important;
-    pointer-events:none !important; }
+    position:fixed !important; left:-9999px !important; top:0 !important;
+    width:1px !important; height:1px !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -459,8 +459,14 @@ if not st.session_state.get("diagnosis_done"):
 from predict import load_model, preprocess, predict, get_gradcam, overlay_gradcam
 
 model = load_model("brain_tumor_detector.pt")
-x = preprocess(denoised)
-gray128 = cv2.resize(denoised, (128, 128)).astype(np.float32) / 255.0
+
+# The model was trained on RAW pixels (Grayscale -> Resize -> ToTensor).
+# It has never seen a CLAHE'd / equalised / denoised image. Feeding the
+# preprocessed version in is out-of-distribution input and measurably hurts
+# accuracy. Preprocessing exists for the human eye and for Otsu — not for
+# the CNN. So: classify the raw scan; display/segment the processed one.
+x = preprocess(img_array)
+gray128 = cv2.resize(img_array, (128, 128)).astype(np.float32) / 255.0
 
 with st.spinner("Analysing…"):
     class_name, confidence, probs = predict(model, x)
@@ -576,9 +582,17 @@ components.html(f"""
              Math.round(bx.x2*{sx}),Math.round(bx.y2*{sy})].join(',');
     for(const i of window.parent.document.querySelectorAll('input[type="text"]')) {{
       if(i.placeholder==='__bbox__') {{
+        // React tracks the value internally, so set it through the native
+        // setter or React will ignore the change.
         Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value')
           .set.call(i,v);
         i.dispatchEvent(new Event('input',{{bubbles:true}}));
+        // Streamlit's text_input only COMMITS to the server on Enter or blur.
+        // Without this, React updates but Python never sees the value.
+        i.dispatchEvent(new KeyboardEvent('keydown',
+          {{key:'Enter', code:'Enter', keyCode:13, which:13, bubbles:true}}));
+        i.dispatchEvent(new Event('change',{{bubbles:true}}));
+        i.blur();
         document.getElementById('dn').innerText='✓ CONFIRMED';
         return;
       }}
