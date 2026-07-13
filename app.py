@@ -578,7 +578,7 @@ buf = io.BytesIO()
 Image.fromarray(overlaid).save(buf, format="PNG")
 st.download_button("⬇  Download Grad-CAM Report", buf.getvalue(),
                    f"gradcam_{uploaded_file.name.rsplit('.', 1)[0]}.png", "image/png")
-
+'''
 # ═════════════════════════════════════════════════════════════════════════════
 # 05 · MedSAM segmentation
 # ═════════════════════════════════════════════════════════════════════════════
@@ -769,3 +769,4 @@ st.download_button("⬇  Download Segmentation", buf2.getvalue(),
                    "image/png", key="dl_seg")
 
 gc.collect()
+'''
