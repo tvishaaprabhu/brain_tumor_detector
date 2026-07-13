@@ -266,11 +266,33 @@ def load_medsam():
     """
     Loaded once, cached across reruns. Only ever called from the
     Run Segmentation button — never at import time.
+
+    The MedSAM weights were saved on a GPU. segment_anything's
+    sam_model_registry calls torch.load() internally WITHOUT map_location, so
+    on a CPU-only box it raises:
+        "Attempting to deserialize object on a CUDA device"
+
+    Rather than depend on that library's internals, we temporarily force
+    map_location="cpu" onto torch.load for the duration of the call. This
+    works no matter how segment_anything chooses to load the file.
     """
     import torch
     from segment_anything import sam_model_registry
+
     torch.set_num_threads(1)
-    sam = sam_model_registry["vit_b"](checkpoint=MEDSAM_CKPT)
+
+    _orig_load = torch.load
+
+    def _cpu_load(*args, **kwargs):
+        kwargs["map_location"] = torch.device("cpu")
+        return _orig_load(*args, **kwargs)
+
+    torch.load = _cpu_load
+    try:
+        sam = sam_model_registry["vit_b"](checkpoint=MEDSAM_CKPT)
+    finally:
+        torch.load = _orig_load          # always restore, even on error
+
     sam.to("cpu").eval()
     return sam
 
@@ -687,7 +709,8 @@ except Exception as e:
     else:
         st.warning(f"MedSAM failed ({type(e).__name__}: {msg}). "
                    "Falling back to Otsu thresholding.")
-    mask = trace_otsu(img_array, bbox)
+    # Otsu benefits from the contrast enhancement, unlike the CNN.
+    mask = trace_otsu(denoised, bbox)
     engine = "Otsu fallback"
 
 cnts, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
