@@ -20,7 +20,7 @@ st.set_page_config(page_title="NeuroScan AI", page_icon="🧠",
 # (Settings -> Secrets) to your deployed backend's base URL, e.g.
 # https://neuroscan-medsam.onrender.com
 MEDSAM_BACKEND_URL = st.secrets.get("MEDSAM_BACKEND_URL", os.environ.get("MEDSAM_BACKEND_URL", ""))
-MEDSAM_TIMEOUT_S = 45
+MEDSAM_TIMEOUT_S = 150  # Render free tier cold start (checkpoint download + model load) can exceed 45s
 
 st.markdown("""
 <style>
