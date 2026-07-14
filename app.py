@@ -23,10 +23,10 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=DM+Serif+Display&family=Space+Mono:wght@400;700&display=swap');
 
 html, body, [class*="css"] {
-    font-family:'DM Sans',sans-serif; background-color:#0c0f1a !important; color:#c9cdd9;
+    font-family:'DM Sans',sans-serif; background-color:#283359 !important; color:#d5d9e6;
 }
 .stApp,[data-testid="stAppViewContainer"],[data-testid="stHeader"],
-[data-testid="stToolbar"],[data-testid="stMain"] { background-color:#0c0f1a !important; }
+[data-testid="stToolbar"],[data-testid="stMain"] { background-color:#283359 !important; }
 #MainMenu, footer, header { visibility:hidden; }
 .block-container { padding:0 4rem 6rem 4rem; max-width:1200px; }
 body {
@@ -40,33 +40,33 @@ body {
 .ns-wordmark { font-family:'DM Serif Display',serif; font-size:2.2rem; color:#f0f2f8;
     letter-spacing:-.01em; line-height:1; }
 .ns-wordmark .scan { color:#7c9eff; }
-.ns-tagline { font-family:'Space Mono',monospace; font-size:.6rem; color:#3d4460;
+.ns-tagline { font-family:'Space Mono',monospace; font-size:.6rem; color:#8e97bd;
     letter-spacing:.14em; text-transform:uppercase; line-height:1.8; text-align:right; margin-top:.2rem; }
 .ns-eyebrow { font-family:'Space Mono',monospace; font-size:.6rem; letter-spacing:.18em;
     text-transform:uppercase; color:#7c9eff; margin-bottom:.35rem; }
 .ns-title { font-family:'DM Serif Display',serif; font-size:1.75rem; color:#f0f2f8;
     letter-spacing:-.015em; margin-bottom:1.4rem; line-height:1.1; }
-.ns-upload-hint { font-family:'Space Mono',monospace; font-size:.6rem; color:#3d4460;
+.ns-upload-hint { font-family:'Space Mono',monospace; font-size:.6rem; color:#8e97bd;
     letter-spacing:.1em; text-transform:uppercase; margin-top:.5rem; }
 [data-testid="stFileUploader"] section {
-    background:linear-gradient(160deg,#131829,#0e1220) !important;
+    background:linear-gradient(160deg,#35426f,#2e3a63) !important;
     border:1px solid rgba(124,158,255,.12) !important; border-radius:14px !important;
     padding:1.5rem !important; }
-.ns-info-card { background:linear-gradient(160deg,#131829,#0e1220);
+.ns-info-card { background:linear-gradient(160deg,#35426f,#2e3a63);
     border:1px solid rgba(124,158,255,.1); border-radius:14px; overflow:hidden; }
 .ns-info-row { display:flex; justify-content:space-between; align-items:baseline;
     padding:.85rem 1.4rem; border-bottom:1px solid rgba(255,255,255,.04); }
 .ns-info-row:last-child { border-bottom:none; }
-.ns-info-key { font-family:'Space Mono',monospace; font-size:.62rem; color:#3d4460;
+.ns-info-key { font-family:'Space Mono',monospace; font-size:.62rem; color:#8e97bd;
     text-transform:uppercase; letter-spacing:.12em; }
 .ns-info-val { font-size:.82rem; color:#c9cdd9; text-align:right; max-width:58%;
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.ns-img-label { font-family:'Space Mono',monospace; font-size:.58rem; color:#3d4460;
+.ns-img-label { font-family:'Space Mono',monospace; font-size:.58rem; color:#8e97bd;
     text-transform:uppercase; letter-spacing:.14em; margin-bottom:.5rem; }
 .ns-img-label-active { font-family:'Space Mono',monospace; font-size:.58rem; color:#7c9eff;
     text-transform:uppercase; letter-spacing:.14em; margin-bottom:.5rem; }
 .ns-img-label-active::before { content:"● "; }
-.ns-img-wrap { background:#090c14; border-radius:10px; overflow:hidden;
+.ns-img-wrap { background:#1b2340; border-radius:10px; overflow:hidden;
     border:1px solid rgba(255,255,255,.04); }
 .ns-auto-badge { display:inline-flex; align-items:center; gap:.4rem;
     background:rgba(124,158,255,.07); border:1px solid rgba(124,158,255,.18);
@@ -74,9 +74,9 @@ body {
     font-size:.58rem; color:#7c9eff; letter-spacing:.12em; text-transform:uppercase;
     margin-bottom:.5rem; }
 .ns-auto-badge::before { content:"●  "; }
-.ns-applied { font-size:.78rem; color:#3d4460; font-style:italic; margin-bottom:1.2rem; }
+.ns-applied { font-size:.78rem; color:#8e97bd; font-style:italic; margin-bottom:1.2rem; }
 .ns-applied b { color:#8b91a3; font-style:normal; font-weight:400; }
-.ns-manual-card { background:linear-gradient(160deg,#131829,#0e1220);
+.ns-manual-card { background:linear-gradient(160deg,#35426f,#2e3a63);
     border:1px solid rgba(124,158,255,.08); border-radius:12px;
     padding:1.2rem 1.6rem; margin-bottom:1.2rem; }
 .stCheckbox label { color:#c9cdd9 !important; font-size:.88rem !important;
@@ -91,9 +91,9 @@ body {
     font-size:.84rem !important; border-radius:8px !important; padding:.5rem 1.2rem !important; }
 .ns-result-tumor, .ns-result-clear { position:relative; overflow:hidden;
     border-radius:16px; padding:3rem 2rem; text-align:center; margin:1.4rem 0; }
-.ns-result-tumor { background:linear-gradient(160deg,#131829,#160e28);
+.ns-result-tumor { background:linear-gradient(160deg,#35426f,#3d2f6e);
     border:1px solid rgba(155,107,255,.25); }
-.ns-result-clear { background:linear-gradient(160deg,#0d1a1a,#0a1520);
+.ns-result-clear { background:linear-gradient(160deg,#2f5560,#2b4a63);
     border:1px solid rgba(100,220,180,.2); }
 .ns-result-tumor::before, .ns-result-clear::before { content:''; position:absolute;
     top:-80px; right:-80px; width:280px; height:280px; pointer-events:none; }
@@ -111,20 +111,20 @@ body {
 .ns-rdiv { width:200px; height:1px; background:rgba(155,107,255,.2); margin:1.2rem auto; }
 .ns-rdiv-clear { width:200px; height:1px; background:rgba(100,220,180,.15); margin:1.2rem auto; }
 .ns-metrics { display:flex; gap:.8rem; margin-top:1.2rem; }
-.ns-metric { flex:1; background:linear-gradient(160deg,#131829,#0e1220);
+.ns-metric { flex:1; background:linear-gradient(160deg,#35426f,#2e3a63);
     border:1px solid rgba(124,158,255,.1); border-radius:12px;
     padding:1.1rem .8rem; text-align:center; }
-.ns-metric-key { font-family:'Space Mono',monospace; font-size:.55rem; color:#3d4460;
+.ns-metric-key { font-family:'Space Mono',monospace; font-size:.55rem; color:#8e97bd;
     text-transform:uppercase; letter-spacing:.14em; margin-bottom:.4rem; }
 .ns-metric-val { font-family:'DM Serif Display',serif; font-size:1.5rem; color:#f0f2f8; line-height:1; }
 .ns-metric-unit { font-family:'Space Mono',monospace; font-size:.6rem; color:#7c9eff; margin-left:.15rem; }
-.ns-gradcam-note { font-size:.8rem; color:#3d4460; font-style:italic; margin-bottom:1.2rem; }
-.ns-cam-label { font-family:'Space Mono',monospace; font-size:.56rem; color:#3d4460;
+.ns-gradcam-note { font-size:.8rem; color:#8e97bd; font-style:italic; margin-bottom:1.2rem; }
+.ns-cam-label { font-family:'Space Mono',monospace; font-size:.56rem; color:#8e97bd;
     text-transform:uppercase; letter-spacing:.14em; text-align:center; margin-top:.5rem; }
 .ns-hr { border:none; border-top:1px solid rgba(255,255,255,.06); margin:3rem 0; }
 .ns-empty { text-align:center; padding:6rem 0 4rem 0; }
 .ns-empty-icon { font-size:3.5rem; opacity:.08; margin-bottom:1.2rem; }
-.ns-empty-text { font-family:'DM Serif Display',serif; font-size:1rem; color:#1e2542; }
+.ns-empty-text { font-family:'DM Serif Display',serif; font-size:1rem; color:#5d6a9e; }
 .stSlider label { color:#3d4460 !important; font-size:.78rem !important;
     font-family:'Space Mono',monospace !important; }
 div[data-testid="stRadio"] { margin-bottom:1.2rem; }
@@ -134,10 +134,10 @@ div[data-testid="stRadio"] > div { display:flex !important; gap:.3rem !important
     border-radius:10px !important; padding:.25rem !important; width:fit-content !important; }
 div[data-testid="stRadio"] > div > label { display:block !important;
     font-family:'DM Sans',sans-serif !important; font-size:.84rem !important;
-    color:#8b91a3 !important; padding:.45rem 1.1rem !important; border-radius:7px !important;
+    color:#aab2cf !important; padding:.45rem 1.1rem !important; border-radius:7px !important;
     cursor:pointer !important; margin:0 !important; }
 div[data-testid="stRadio"] > div > label:has(input:checked) {
-    background:#1e2542 !important; color:#f0f2f8 !important; }
+    background:#465391 !important; color:#f0f2f8 !important; }
 div[data-testid="stRadio"] > div > label > div:first-child { display:none !important; }
 div[data-testid="stTextInput"]:has(input[placeholder="__bbox__"]) {
     position:fixed !important; left:-9999px !important; top:0 !important;
@@ -578,7 +578,7 @@ buf = io.BytesIO()
 Image.fromarray(overlaid).save(buf, format="PNG")
 st.download_button("⬇  Download Grad-CAM Report", buf.getvalue(),
                    f"gradcam_{uploaded_file.name.rsplit('.', 1)[0]}.png", "image/png")
-'''
+
 # ═════════════════════════════════════════════════════════════════════════════
 # 05 · MedSAM segmentation
 # ═════════════════════════════════════════════════════════════════════════════
@@ -606,8 +606,8 @@ components.html(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Space+Mono&display=swap');
 #cv {{ border:1px solid rgba(124,158,255,.18); border-radius:10px;
-      cursor:crosshair; display:block; background:#090c14; }}
-#co {{ font-family:'Space Mono',monospace; font-size:11px; color:#3d4460;
+      cursor:crosshair; display:block; background:#1b2340; }}
+#co {{ font-family:'Space Mono',monospace; font-size:11px; color:#8e97bd;
       margin-top:8px; min-height:16px; letter-spacing:.06em; }}
 #cb {{ margin-top:10px; padding:8px 20px; background:rgba(124,158,255,.08);
       color:#7c9eff; border:1px solid rgba(124,158,255,.25); border-radius:8px;
@@ -693,7 +693,16 @@ try:
     with st.spinner("Running MedSAM… (first run loads the model, ~30s)"):
         mask = run_medsam(img_rgb, bbox)
 except Exception as e:
+    import traceback
     msg = str(e)
+
+    # Show the FULL traceback on screen. A one-line summary has repeatedly
+    # hidden the actual cause. Screenshot this panel if it appears.
+    with st.expander("⚠  MedSAM traceback — expand and screenshot this", expanded=True):
+        st.caption(f"app.py build: cpu-load-patch-v3   |   {type(e).__name__}")
+        st.code("".join(traceback.format_exception(type(e), e, e.__traceback__)),
+                language="text")
+
     if "central directory" in msg or "PytorchStreamReader" in msg:
         # Corrupt checkpoint, NOT memory. Bust the cache so the next click
         # re-downloads instead of failing on the same bad file forever.
@@ -769,4 +778,3 @@ st.download_button("⬇  Download Segmentation", buf2.getvalue(),
                    "image/png", key="dl_seg")
 
 gc.collect()
-'''
