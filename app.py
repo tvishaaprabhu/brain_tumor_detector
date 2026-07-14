@@ -433,6 +433,7 @@ if detected == "notumor":
       <div class="ns-rdiv-clear"></div>
       <p class="ns-conf-clear">{confidence*100:.1f}% confidence</p>
     </div>""", unsafe_allow_html=True)
+    st.stop()
 else:
     st.markdown(f"""
     <div class="ns-result-tumor">
@@ -473,9 +474,6 @@ st.download_button("⬇  Download Grad-CAM Report", buf.getvalue(),
 # ═════════════════════════════════════════════════════════════════════════════
 # 05 · Segmentation (MedSAM backend temporarily disabled — see call_medsam_backend below)
 # ═════════════════════════════════════════════════════════════════════════════
-if detected == "notumor":
-    st.stop()
-
 st.markdown('<div class="ns-hr"></div>', unsafe_allow_html=True)
 st.markdown('<p class="ns-eyebrow">// 05</p><p class="ns-title">Tumor Segmentation</p>',
             unsafe_allow_html=True)
